@@ -42,6 +42,11 @@
       <div class="content">
         <h1><a href="<?php echo site_url(); ?>">Estações Imperatriz</a></h1>
         <?php wp_nav_menu(array('theme_location' => 'main-menu')); ?>
+        <?php get_search_form(); ?>
+        <ul class="social">        
+          <li><a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+          <li><a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>          
+        </ul>
       </div>
       <div class="sidebar">
 

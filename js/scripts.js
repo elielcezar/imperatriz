@@ -6,12 +6,12 @@
     const desktop = h < w;
     const menuMobile = document.querySelector('.menu-mobile .mainMenu');
     
-    window.onresize = function(){ 
+    /*window.onresize = function(){ 
       const newW = window.innerWidth;
       if(newW != w){
         location.reload(); 
       }      
-    };   
+    };   */
 
 
     /* ACCORDION ------------------------------------------------------------------------------*/

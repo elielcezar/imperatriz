@@ -6,8 +6,8 @@ function register_new_sidebars()
 {
   register_sidebar(array(
     'id' => 'sidebar',
-    'name' => __('Sidebar', 'litercultura'),
-    'description' => __('Sidebar', 'litercultura'),
+    'name' => __('Sidebar', 'estacoes'),
+    'description' => __('Sidebar', 'estacoes'),
     'before_widget' => '<div id="%1$s" class="widget %2$s">',
     'after_widget' => '</div>',
     'before_title' => '<h4 class="widgettitle">',
@@ -23,7 +23,7 @@ function register_my_menus()
 {
   register_nav_menus(
     array(
-      'main-menu' => __('Main Menu'),
+      'main-menu' => __('Principal'),
       'secundario' => __('Menu Secundario')
     )
   );
