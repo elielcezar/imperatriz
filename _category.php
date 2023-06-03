@@ -9,10 +9,14 @@
   </div>
 </div>
 
-<div id="recentes">    
-    <h3>Mais recentes</h3>
-    <div class="container">      
+<div id="recentes">
+    
+    <h3>Mais recentes</h3>        
+
+    <div class="container">
+      
         <div class="wrapper">
+
         <div class="posts">           
             <?php
               $loop = new WP_Query(array(
@@ -75,47 +79,9 @@
       </div>
     </div>
 
-<!--div id="publicidade">
+<div id="publicidade">
     <div class="container">
     <img src="<?php echo get_stylesheet_directory_uri()?>/img/banner.jpg" alt="">
-    </div>
-</div-->
-
-<div id="recomendados">    
-    
-    <div class="container">
-
-          <?php
-            $featured_posts = get_field('posts_relacionados');
-            if( $featured_posts ): ?>
-                
-                <h3>Recomendados para você</h3>
-
-                <div class="posts">
-                
-                <?php foreach( $featured_posts as $post ): 
-
-                    // Setup this post for WP functions (variable must be named $post).
-                    setup_postdata($post); ?>
-                    <div class="item">
-                      <a href="<?php the_permalink(); ?>">
-                        <?php the_post_thumbnail('thumb-noticia'); ?>
-                      </a>
-                      <h4>
-                        <a href="<?php the_permalink(); ?>">
-                          <?php the_title(); ?>
-                        </a>
-                      </h4>
-                      <!--p><?php the_field('chamada'); ?></p-->
-                    </div>       
-                <?php endforeach; ?>
-                
-                <?php 
-                // Reset the global post object so that the rest of the page works correctly.
-                wp_reset_postdata(); ?>
-                </div>        
-            <?php endif; ?>
-        
     </div>
 </div>
 

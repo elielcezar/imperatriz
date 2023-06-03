@@ -24,8 +24,7 @@
         <?php the_field('video'); ?>
     </div>
 
-    <div class="produtos">
-        <h3>Lorem ipsum</h3>
+    <div class="produtos">           
         <div class="itens">
             <?php
                 $images = acf_photo_gallery('imagens_produtos', $post->ID);

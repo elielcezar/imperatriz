@@ -40,175 +40,346 @@ Template Name: Homepage Custom
 
 <div id="main-wrapper">
 
-<section id="adega">
-  <div class="container">
-    <div class="content">
+  <div id="newsletter-mobile">
+    <h3>Newsletter</h3>
+    <p>Receba as novidades</p>
+    <?php echo do_shortcode('[mc4wp_form id=105]'); ?>
+  </div>
+
+  <section id="adega">
+    <div class="container">
+      <div class="content">
+
+        <?php
+        $loop = new WP_Query(array(
+          'post_type' => 'post',
+          'posts_per_page' => 1,
+          'category_name' => 'adega'
+        ));
+        if ($loop->have_posts()) :
+          while ($loop->have_posts()) : $loop->the_post(); ?>
+
         <div class="card">
           <div class="info">
             <h2>Adega</h2>
-            <h3>Lorem ipsum</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.  </p>
-            <a href="" class="btn">Saiba mais</a>
+            <h3><?php the_title(); ?></h3>
+            <p><?php the_field('chamada'); ?></p>
+            <a href="<?php the_permalink(); ?>" class="btn">Saiba mais</a>
           </div>
           <div class="img">
-            <img src="<?php echo get_stylesheet_directory_uri()?>/img/vinho-1.jpg" alt="">            
+            <a href="<?php the_permalink(); ?>">
+              <?php the_post_thumbnail('thumb-noticia'); ?>
+            </a>
+
           </div>
         </div>
-    </div>
 
-    <div id="sidebarWrap">
-      <div id="sidebar">
-        
-        <div class="newsletter">
-          <h3>Newsletter</h3>
-          <p>Lorem ipsum</p>
-        </div>
+        <?php endwhile;
+        endif;
+        wp_reset_postdata();
+        ?>
 
-        <div class="revista">
-          <h3>Revista</h3>
-          <p>Lorem ipsum</p>
-          <img src="<?php echo get_stylesheet_directory_uri()?>/img/banner-revista.jpg" alt="">                      
-        </div>
-
-        <div class="banner">
-        <img src="<?php echo get_stylesheet_directory_uri()?>/img/banner-rb.jpg" alt="">                      
-        </div>
 
       </div>
-    </div>    
-    
-  </div>
-</section>
 
-<section id="receitas">
+      <div id="sidebarWrap">
+        <div id="sidebar">
+
+          <div class="newsletter">
+            <h3>Newsletter</h3>
+            <p>Receba as novidades</p>
+            <?php echo do_shortcode('[mc4wp_form id=105]'); ?>
+          </div>
+
+          <div class="revista">
+            <h3>Revista Imperatriz Estações</h3>
+            <p>Confira o conteúdo completo da primeira edição</p>
+            <a href="http://estacoesimperatriz.com.br/revista/">
+              <img src="http://estacoesimperatriz.com.br/wp-content/uploads/2023/04/capa.jpg" alt="">
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="receitas">
+    <div class="container">
+      <div class="content">
+
+        <?php
+        $loop = new WP_Query(array(
+          'post_type' => 'receita',
+          'posts_per_page' => 1,
+          'orderby' => 'rand'
+        ));
+
+        if ($loop->have_posts()) :
+          while ($loop->have_posts()) : $loop->the_post(); ?>
+
+        <div class="card">
+          <div class="info">
+            <h2>Receitas</h2>
+            <h3><?php the_title(); ?></h3>
+            <p><?php the_field('chamada'); ?></p>
+            <a href="<?php the_permalink(); ?>" class="btn">Saiba mais</a>
+          </div>
+          <div class="img">
+            <a href="<?php the_permalink(); ?>">
+              <?php the_post_thumbnail('thumb-noticia'); ?>
+            </a>
+
+          </div>
+        </div>
+
+        <?php endwhile;
+        endif;
+        wp_reset_postdata();
+        ?>
+
+      </div>
+      <div class="sidebar"></div>
+    </div>
+  </section>
+
+  <section id="drinks">
+    <div class="container">
+      <div class="content">
+
+        <?php
+        $loop = new WP_Query(array(
+          'post_type' => 'post',
+          'posts_per_page' => 1,
+          'category_name' => 'drinks'
+        ));
+
+        if ($loop->have_posts()) :
+          while ($loop->have_posts()) : $loop->the_post(); ?>
+
+        <h2>Drinks</h2>
+        <h3><?php the_title(); ?></h3>
+        <p><?php the_field('chamada'); ?></p>
+        <div class="lista-drinks">
+          <div class="item">
+            <a href="<?php the_permalink(); ?>"><img src="http://estacoesimperatriz.com.br/wp-content/uploads/2023/04/shutterstock_1369132346.jpg" alt=""></a>
+          </div>
+          <div class="item">
+            <a href="<?php the_permalink(); ?>"><img src="http://estacoesimperatriz.com.br/wp-content/uploads/2023/04/irish2.jpg" alt=""></a>
+          </div>
+          <div class="item">
+            <a href="<?php the_permalink(); ?>"><img src="http://estacoesimperatriz.com.br/wp-content/uploads/2023/04/irish3.jpg" alt=""></a>
+          </div>
+        </div>
+        <a href="<?php the_permalink(); ?>" class="btn">Saiba mais</a>
+
+        <?php endwhile;
+        endif;
+        wp_reset_postdata();
+        ?>
+
+      </div>
+      <div class="sidebar"></div>
+    </div>
+  </section>
+
+  <!--section id="video">
   <div class="container">
     <div class="content">
-      <div class="card">
-        <div class="info">
-          <h2>Receitas</h2>
-          <h3>Lorem ipsum</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.  </p>
-          <a href="" class="btn">Saiba mais</a>
-        </div>
-        <div class="img">
-          <img src="<?php echo get_stylesheet_directory_uri()?>/img/receitas-1.jpg" alt="">
-        </div>
-      </div>
+    <img src="<?php echo get_stylesheet_directory_uri() ?>/img/video-1.jpg" alt="">
     </div>
     <div class="sidebar"></div>
   </div>
-</section>
+</section-->
 
-<section id="drinks">
-  <div class="container">
-    <div class="content">
-      <h2>Drinks</h2>
-      <h3>Lorem ipsum dolor site</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
+  <section id="destinos">
+    <div class="container">
+      <div class="content">
 
-      <div class="lista-drinks">
-        <div class="item">
-          <a href=""><img src="<?php echo get_stylesheet_directory_uri()?>/img/drinks-1.jpg" alt=""></a>
-        </div>
-        <div class="item">
-          <a href=""><img src="<?php echo get_stylesheet_directory_uri()?>/img/drinks-2.jpg" alt=""></a>
-        </div>
-        <div class="item">
-          <a href=""><img src="<?php echo get_stylesheet_directory_uri()?>/img/drinks-3.jpg" alt=""></a>
-        </div>
-      </div>
 
-      <a href="" class="btn">Saiba mais</a>
-    </div>
-    <div class="sidebar"></div>
-  </div>
-</section>
 
-<section id="video">
-  <div class="container">
-    <div class="content">
-    <img src="<?php echo get_stylesheet_directory_uri()?>/img/video-1.jpg" alt="">
-    </div>
-    <div class="sidebar"></div>
-  </div>
-</section>
+        <?php
+        $loop = new WP_Query(array(
+          'post_type' => 'post',
+          'posts_per_page' => 1,
+          'category_name' => 'destinos'
+        ));
 
-<section id="mais">
-  <div class="container">
-    <div class="content">
-      
-      <div id="editorial" class="card">
-        <div class="info">
-          <h2>Editorial</h2>
-          <h3>Lorem ipsum dolor site</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
-          <a href="" class="btn">Saiba mais</a>
-        </div>
-        <div class="img">
-          <img src="<?php echo get_stylesheet_directory_uri()?>/img/cafe-1.jpg" alt="">
-        </div>
-      </div>
+        if ($loop->have_posts()) :
+          while ($loop->have_posts()) : $loop->the_post(); ?>
 
-      <div id="casa" class="card">
-        <div class="info">
-          <h2>A casa é sua</h2>
-          <h3>Lorem ipsum dolor site</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
-          <a href="" class="btn">Saiba mais</a>
-        </div>
-        <div class="img">
-          <img src="<?php echo get_stylesheet_directory_uri()?>/img/salada-1.jpg" alt="">
-        </div>
-      </div>
-
-    </div>
-    <div class="sidebar"></div>
-  </div>
-</section>
-
-<section id="destinos">
-  <div class="container">
-    <div class="content">      
-        <h2>Destinos</h2>        
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>                
+        <h2>Destinos</h2>
+        <h3><?php the_title(); ?></h3>
+        <p><?php the_field('chamada'); ?></p>
         <div class="lista-destinos">
           <div class="item">
-            <a href=""><img src="<?php echo get_stylesheet_directory_uri()?>/img/destinos-1.jpg" alt=""></a>
+            <a href="<?php the_permalink(); ?>"><img src="http://estacoesimperatriz.com.br/wp-content/uploads/2023/04/pt1.jpg" alt=""></a>
           </div>
           <div class="item">
-            <a href=""><img src="<?php echo get_stylesheet_directory_uri()?>/img/destinos-2.jpg" alt=""></a>
+            <a href="<?php the_permalink(); ?>"><img src="http://estacoesimperatriz.com.br/wp-content/uploads/2023/04/pt2.jpg" alt=""></a>
           </div>
           <div class="item">
-            <a href=""><img src="<?php echo get_stylesheet_directory_uri()?>/img/destinos-3.jpg" alt=""></a>
+            <a href="<?php the_permalink(); ?>"><img src="http://estacoesimperatriz.com.br/wp-content/uploads/2023/04/pt3.jpg" alt=""></a>
           </div>
         </div>
-        <a href="" class="btn">Saiba mais</a>
-    </div>
-    <div class="sidebar"></div>
-  </div>
-</section>
+        <a href="<?php the_permalink(); ?>" class="btn">Saiba mais</a>
 
-<section id="cozinha">
-  <div class="container">
-    <div class="content">        
-        
-        <div class="card">          
+        <?php endwhile;
+        endif;
+        wp_reset_postdata();
+        ?>
+
+
+      </div>
+      <div class="sidebar"></div>
+    </div>
+  </section>
+
+  <section id="mais">
+    <div class="container">
+      <div class="content">
+
+        <?php
+        $loop = new WP_Query(array(
+          'post_type' => 'post',
+          'posts_per_page' => 1,          
+          'meta_query' => array(
+            array(
+                'key'   => 'publieditorial',
+                'value' => '1',
+            )
+        )
+        ));
+        if ($loop->have_posts()) :
+          while ($loop->have_posts()) : $loop->the_post(); ?>
+
+        <div id="editorial" class="card">
           <div class="info">
-            <h2>Cozinha afetiva</h2>
-            <h3>Lorem ipsum</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.  </p>
-            <a href="" class="btn">saiba Mais</a>
+            <h2>Publieditorial</h2>
+            <h3><?php the_title(); ?></h3>
+            <p><?php the_field('chamada'); ?></p>
+            <a href="<?php the_permalink(); ?>" class="btn">Saiba mais</a>
           </div>
           <div class="img">
-            <img src="<?php echo get_stylesheet_directory_uri()?>/img/cozinha-1.jpg" alt="">
+            <a href="<?php the_permalink(); ?>">
+              <?php the_post_thumbnail('thumb-noticia'); ?>
+            </a>
+
           </div>
-        </div><!-- card -->
+        </div>
 
-    </div>      
-  </div>
-</section>
+        <?php endwhile;
+        endif;
+        wp_reset_postdata();
+        ?>
 
-<section id="especiais">
+
+        <div id="casa" class="card">
+          <?php
+          $loop = new WP_Query(array(
+            'post_type' => 'post',
+            'posts_per_page' => 1,
+            'category_name' => 'a-casa-e-sua'
+          ));
+          if ($loop->have_posts()) :
+            while ($loop->have_posts()) : $loop->the_post(); ?>
+
+          <div class="card" style="flex-direction: row-reverse;">
+            <div class="info">
+              <h2>A casa é sua</h2>
+              <h3><?php the_title(); ?></h3>
+              <p><?php the_field('chamada'); ?></p>
+              <a href="<?php the_permalink(); ?>" class="btn">Saiba mais</a>
+            </div>
+            <div class="img">
+              <a href="<?php the_permalink(); ?>">
+                <?php the_post_thumbnail('thumb-noticia'); ?>
+              </a>
+
+            </div>
+          </div>
+
+          <?php endwhile;
+          endif;
+          wp_reset_postdata();
+          ?>
+        </div>
+
+        <?php
+        $loop = new WP_Query(array(
+          'post_type' => 'post',
+          'posts_per_page' => 1,
+          'offset' => 1,
+          'category_name' => 'publieditorial'
+        ));
+        if ($loop->have_posts()) :
+          while ($loop->have_posts()) : $loop->the_post(); ?>
+
+        <div id="editorial" class="card" style="margin-top: 40px">
+          <div class="info">
+            <h2>Publieditorial</h2>
+            <h3><?php the_title(); ?></h3>
+            <p><?php the_field('chamada'); ?></p>
+            <a href="<?php the_permalink(); ?>" class="btn">Saiba mais</a>
+          </div>
+          <div class="img">
+            <a href="<?php the_permalink(); ?>">
+              <?php the_post_thumbnail('thumb-noticia'); ?>
+            </a>
+
+          </div>
+        </div>
+
+        <?php endwhile;
+        endif;
+        wp_reset_postdata();
+        ?>
+
+
+      </div>
+      <div class="sidebar"></div>
+    </div>
+  </section>
+
+  <section id="cozinha">
+    <div class="container">
+      <div class="content">
+
+        <?php
+        $loop = new WP_Query(array(
+          'post_type' => 'post',
+          'posts_per_page' => 1,
+          'category_name' => 'cozinha-afetiva'
+        ));
+        if ($loop->have_posts()) :
+          while ($loop->have_posts()) : $loop->the_post(); ?>
+
+        <div class="card">
+          <div class="info">
+            <h2>Cozinha afetiva</h2>
+            <h3><?php the_title(); ?></h3>
+            <p><?php the_field('chamada'); ?></p>
+            <a href="<?php the_permalink(); ?>" class="btn">Saiba mais</a>
+          </div>
+          <div class="img">
+            <a href="<?php the_permalink(); ?>">
+              <?php the_post_thumbnail('thumb-noticia'); ?>
+            </a>
+
+          </div>
+        </div>
+
+        <?php endwhile;
+        endif;
+        wp_reset_postdata();
+        ?>
+
+      </div>
+    </div>
+  </section>
+
+  <!--section id="especiais">
     
     <div class="container">
       <div class="content">
@@ -220,7 +391,7 @@ Template Name: Homepage Custom
             <a href="" class="btn">saiba Mais</a>
           </div>
           <div class="img">
-            <img src="<?php echo get_stylesheet_directory_uri()?>/img/vinho-2.jpg" alt="">
+            <img src="<?php echo get_stylesheet_directory_uri() ?>/img/vinho-2.jpg" alt="">
           </div> 
         </div> 
       </div>
@@ -228,7 +399,7 @@ Template Name: Homepage Custom
       <div class="sidebar"></div>
     </div>
   
-</section>
+</section-->
 
 </div><!-- main wrapper -->
 

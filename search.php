@@ -9,37 +9,51 @@ Template Name: Search Page
 
 <?php get_header(); ?>
 
+<div id="principal">
 
-<div id="masthead">
-  <div class="container">
-    <h1><?php the_title(); ?></h1>
-  </div>
-</div>
+<div class="container">
 
-
-<?php 
-      $allsearch = new WP_Query("s=$s&showposts=-1"); 
-      $key = wp_specialchars($s, 1); 
-      $count = $allsearch->post_count; 
+<?php
+$s=get_search_query();
+$args = array(
+                's' =>$s
+            );
+    // The Query
+$the_query = new WP_Query( $args );
+if ( $the_query->have_posts() ) {
+        _e("<h2 style='font-weight:bold;color:#000'>Exibindo resultados para: ".get_query_var('s')."</h2>");
+        while ( $the_query->have_posts() ) {
+           $the_query->the_post();
+                 ?>
+                    
+                    <div class="item">
+                      <div class="imagem">
+                        <a href="<?php the_permalink(); ?>">
+                          <?php the_post_thumbnail('thumb-noticia'); ?>
+                        </a>
+                      </div>
+                      <div class="conteudo">
+                      <h4>
+                      <a href="<?php the_permalink(); ?>">
+                        <?php the_title(); ?>
+                      </a>
+                    </h4>
+                    <p><?php the_field('chamada'); ?></p>
+                      </div>                    
+                  </div>  
+                    
+                 <?php
+        }
+    }else{
 ?>
+        <h2 style='font-weight:bold;color:#000'>Nenhum resultado encontrado</h2>
+        <div class="alert alert-info">
+          <p>Desculpe, não foi possível encontrar nenhum conteúdo com as palavras-chave fornecidas.</p>
+        </div>
+<?php } ?>
 
-<section id="principal">
-
-  <div class="container">  
-    
-    <div class="conteudo">
-      
-        <h2><?php echo $key; ?></h2>
-        <p class="pagetitle">
-          <strong><?php echo $count; ?></strong> resultados entre notícias, receitas e outros conteúdos do site.
-        </p> 
-      
-    </div>
-
-  </div>
-
-</section>
-
+</div>
+</div>
 
 <?php get_footer(); ?>
 
