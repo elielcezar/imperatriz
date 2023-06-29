@@ -1,10 +1,12 @@
 <?php get_header(); ?>
 
-  <div id="masthead">
+<div id="masthead">
+  <div class="background-wrapper">
     <div class="container">
       <h1><?php the_title(); ?></h1>
     </div>
   </div>
+</div>
 
 
 <div id="principal">
@@ -15,7 +17,7 @@
       <?php the_content(); ?>
 
     </div>
-  
+
   </div>
 </div>
 

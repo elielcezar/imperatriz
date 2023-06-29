@@ -25,6 +25,7 @@ function register_new_sidebars()
 add_action('widgets_init', 'register_new_sidebars');
 add_image_size('destaque-noticia', 540, 345, true);
 add_image_size('thumb-noticia', 485, 329, true);
+add_image_size('thumb-triplo-home', 353, 234, true);
 add_image_size('carrossel', 670, 420, true);
 
 function register_my_menus()

@@ -22,46 +22,58 @@ Template Name: Fornecedores
     <ul class="fornecedores">
 
       <?php
-        $loop = new WP_Query(array(
-          'post_type' => 'fornecedor',
-          'meta_key'      => 'tipo',
-          'meta_value'    => 'fixo',
-          'posts_per_page' => -1,
-          'orderby' => 'rand'
-        ));
-        if ($loop->have_posts()) :
-          while ($loop->have_posts()) : $loop->the_post(); ?>
+      $loop = new WP_Query(array(
+        'post_type' => 'fornecedor',
+        'meta_key'      => 'tipo',
+        'meta_value'    => 'fixo',
+        'posts_per_page' => -1,
+        'orderby' => 'rand'
+      ));
+      if ($loop->have_posts()) :
+        while ($loop->have_posts()) : $loop->the_post(); ?>
 
-        <li><img src="<?php the_field('logo'); ?>" alt=""></li>
+      <!--li><img src="<?php the_field('logo'); ?>" alt=""></li-->
 
-        <?php endwhile;
-        endif;
-        wp_reset_postdata();
-        ?>
+      <?php
+          $has_content = get_field('possui_conteudo');
+          if ($has_content) { ?>
+      <li><a href="<?php the_permalink(); ?>"><img src="<?php the_field('logo'); ?>" alt=""></a></li>
+      <?php } else { ?>
+      <li><a href="<?php the_field('link_vitrine'); ?>"><img src="<?php the_field('logo'); ?>" alt=""></a></li>
+      <?php } ?>
 
-      <!--li><a href=""><img src="<?php echo get_stylesheet_directory_uri() ?>/img/bubaloo-3.png" alt=""></a></li>
-      <li><a href=""><img src="<?php echo get_stylesheet_directory_uri() ?>/img/cocacola.png" alt=""></a></li>
-      <li><a href=""><img src="<?php echo get_stylesheet_directory_uri() ?>/img/lacta.png" alt=""></a></li>
-      <li><a href=""><img src="<?php echo get_stylesheet_directory_uri() ?>/img/concha.png" alt=""></a></li-->
+      <?php endwhile;
+      endif;
+      wp_reset_postdata();
+      ?>
+
     </ul>
     <ul class="fornecedores">
-    <?php
-        $loop = new WP_Query(array(
-          'post_type' => 'fornecedor',
-          'meta_key'      => 'tipo',
-          'meta_value'    => 'randomico',
-          'posts_per_page' => -1,
-          'orderby' => 'rand'
-        ));
-        if ($loop->have_posts()) :
-          while ($loop->have_posts()) : $loop->the_post(); ?>
+      <?php
+      $loop = new WP_Query(array(
+        'post_type' => 'fornecedor',
+        'meta_key'      => 'tipo',
+        'meta_value'    => 'randomico',
+        'posts_per_page' => -1,
+        'orderby' => 'rand'
+      ));
+      if ($loop->have_posts()) :
+        while ($loop->have_posts()) : $loop->the_post(); ?>
 
-        <li><img src="<?php the_field('logo'); ?>" alt=""></li>
+      <!--li><img src="<?php the_field('logo'); ?>" alt=""></li-->
 
-        <?php endwhile;
-        endif;
-        wp_reset_postdata();
-        ?>
+      <?php
+          $has_content = get_field('possui_conteudo');
+          if ($has_content) { ?>
+      <li><a href="<?php the_permalink(); ?>"><img src="<?php the_field('logo'); ?>" alt=""></a></li>
+      <?php } else { ?>
+      <li><a href="<?php the_field('link_vitrine'); ?>"><img src="<?php the_field('logo'); ?>" alt=""></a></li>
+      <?php } ?>
+
+      <?php endwhile;
+      endif;
+      wp_reset_postdata();
+      ?>
     </ul>
 
   </div>

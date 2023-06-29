@@ -13,9 +13,16 @@
           'orderby' => 'rand'
         ));
         if ($loop->have_posts()) :
-          while ($loop->have_posts()) : $loop->the_post(); ?>
+          while ($loop->have_posts()) : $loop->the_post();
+        ?>
 
-        <li><a href="http://estacoesimperatriz.com.br/vitrine-do-fornecedor/"><img src="<?php the_field('logo'); ?>" alt=""></a></li>
+        <?php
+            $has_content = get_field('possui_conteudo');
+            if ($has_content) { ?>
+        <li><a href="<?php the_permalink(); ?>"><img src="<?php the_field('logo'); ?>" alt=""></a></li>
+        <?php } else { ?>
+        <li><a href="<?php the_field('link_vitrine'); ?>"><img src="<?php the_field('logo'); ?>" alt=""></a></li>
+        <?php } ?>
 
         <?php endwhile;
         endif;
@@ -40,7 +47,13 @@
         if ($loop->have_posts()) :
           while ($loop->have_posts()) : $loop->the_post(); ?>
 
-        <li><a href="http://estacoesimperatriz.com.br/vitrine-do-fornecedor/"><img src="<?php the_field('logo_branco'); ?>" alt=""></a></li>
+        <?php
+            $has_content = get_field('possui_conteudo');
+            if ($has_content) { ?>
+        <li><a href="<?php the_permalink(); ?>"><img src="<?php the_field('logo_branco'); ?>" alt=""></a></li>
+        <?php } else { ?>
+        <li><a href="<?php the_field('link_vitrine'); ?>"><img src="<?php the_field('logo_branco'); ?>" alt=""></a></li>
+        <?php } ?>
 
         <?php endwhile;
         endif;
@@ -58,11 +71,13 @@
           <div class="row">
             <div class="col-1">
               <ul>
-                <li><a href="http://estacoesimperatriz.com.br/conteudos">Conteúdos</a></li>
+                <li><a href="http://estacoesimperatriz.com.br/blog/">Blog</a></li>
                 <li><a href="http://estacoesimperatriz.com.br/receitas/">Receitas</a></li>
                 <li><a href="http://estacoesimperatriz.com.br/vitrine-do-fornecedor/">Vitrine do Fornecedor</a></li>
                 <li><a href="http://estacoesimperatriz.com.br/revista/">Revista</a></li>
                 <li><a href="http://estacoesimperatriz.com.br/#main-wrapper">Cadastro</a></li>
+                <li><a href="http://estacoesimperatriz.com.br/termos-e-condicoes-de-uso-do-site/">Política de Cookies</a></li>
+                <li><a href="http://estacoesimperatriz.com.br/politica-geral-de-privacidade-e-protecao-de-dados/">Política Geral de Privacidade<br />e Proteção de Dados</a></li>
               </ul>
             </div>
             <div class="col-2">

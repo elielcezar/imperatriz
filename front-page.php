@@ -162,15 +162,19 @@ Template Name: Homepage Custom
         <h3><?php the_title(); ?></h3>
         <p><?php the_field('chamada'); ?></p>
         <div class="lista-drinks">
+        <?php
+         $images = acf_photo_gallery('imagens_home', $post->ID);
+         if (count($images)) :
+           foreach ($images as $image) :
+             $full_image_url = $image['full_image_url'];
+             $full_image_url = acf_photo_gallery_resize_image($full_image_url, 353, 234); 
+             $url = $image['url'];
+         ?>
           <div class="item">
-            <a href="<?php the_permalink(); ?>"><img src="http://estacoesimperatriz.com.br/wp-content/uploads/2023/04/shutterstock_1369132346.jpg" alt=""></a>
+            <a href="<?php the_permalink(); ?>"><img src="<?php echo $full_image_url; ?>" alt=""></a>
           </div>
-          <div class="item">
-            <a href="<?php the_permalink(); ?>"><img src="http://estacoesimperatriz.com.br/wp-content/uploads/2023/04/irish2.jpg" alt=""></a>
-          </div>
-          <div class="item">
-            <a href="<?php the_permalink(); ?>"><img src="http://estacoesimperatriz.com.br/wp-content/uploads/2023/04/irish3.jpg" alt=""></a>
-          </div>
+          <?php endforeach;
+          endif; ?>
         </div>
         <a href="<?php the_permalink(); ?>" class="btn">Saiba mais</a>
 
@@ -197,8 +201,6 @@ Template Name: Homepage Custom
     <div class="container">
       <div class="content">
 
-
-
         <?php
         $loop = new WP_Query(array(
           'post_type' => 'post',
@@ -213,15 +215,21 @@ Template Name: Homepage Custom
         <h3><?php the_title(); ?></h3>
         <p><?php the_field('chamada'); ?></p>
         <div class="lista-destinos">
+
+        <?php
+         $images = acf_photo_gallery('imagens_home', $post->ID);
+         if (count($images)) :
+           foreach ($images as $image) :
+             $full_image_url = $image['full_image_url'];
+             $full_image_url = acf_photo_gallery_resize_image($full_image_url, 353, 234); 
+             $url = $image['url'];
+         ?>
           <div class="item">
-            <a href="<?php the_permalink(); ?>"><img src="http://estacoesimperatriz.com.br/wp-content/uploads/2023/04/pt1.jpg" alt=""></a>
+            <a href="<?php the_permalink(); ?>"><img src="<?php echo $full_image_url; ?>" alt=""></a>
           </div>
-          <div class="item">
-            <a href="<?php the_permalink(); ?>"><img src="http://estacoesimperatriz.com.br/wp-content/uploads/2023/04/pt2.jpg" alt=""></a>
-          </div>
-          <div class="item">
-            <a href="<?php the_permalink(); ?>"><img src="http://estacoesimperatriz.com.br/wp-content/uploads/2023/04/pt3.jpg" alt=""></a>
-          </div>
+          <?php endforeach;
+          endif; ?>
+         
         </div>
         <a href="<?php the_permalink(); ?>" class="btn">Saiba mais</a>
 
@@ -285,7 +293,7 @@ Template Name: Homepage Custom
           if ($loop->have_posts()) :
             while ($loop->have_posts()) : $loop->the_post(); ?>
 
-          <div class="card" style="flex-direction: row-reverse;">
+          <div class="card">
             <div class="info">
               <h2>A casa é sua</h2>
               <h3><?php the_title(); ?></h3>
@@ -305,36 +313,7 @@ Template Name: Homepage Custom
           wp_reset_postdata();
           ?>
         </div>
-
-        <?php
-        $loop = new WP_Query(array(
-          'post_type' => 'post',
-          'posts_per_page' => 1,
-          'offset' => 1,
-          'category_name' => 'publieditorial'
-        ));
-        if ($loop->have_posts()) :
-          while ($loop->have_posts()) : $loop->the_post(); ?>
-
-        <div id="editorial" class="card" style="margin-top: 40px">
-          <div class="info">
-            <h2>Publieditorial</h2>
-            <h3><?php the_title(); ?></h3>
-            <p><?php the_field('chamada'); ?></p>
-            <a href="<?php the_permalink(); ?>" class="btn">Saiba mais</a>
-          </div>
-          <div class="img">
-            <a href="<?php the_permalink(); ?>">
-              <?php the_post_thumbnail('thumb-noticia'); ?>
-            </a>
-
-          </div>
-        </div>
-
-        <?php endwhile;
-        endif;
-        wp_reset_postdata();
-        ?>
+     
 
 
       </div>

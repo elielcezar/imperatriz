@@ -5,7 +5,7 @@
     const mobile = w < 1300;
     const desktop = h < w;
     const menuMobile = document.querySelector('.menu-mobile .mainMenu');
-    
+
     /*window.onresize = function(){ 
       const newW = window.innerWidth;
       if(newW != w){
@@ -13,6 +13,24 @@
       }      
     };   */
 
+    /*--- stick menu -----------------------------------------*/
+    const mainHeader = document.querySelector('header');
+    const cloneHeader = mainHeader.cloneNode(true);
+    cloneHeader.id = 'stick-header';
+    $(cloneHeader).insertAfter(mainHeader);
+
+    if (!mobile) {
+      $(window).scroll(function (event) {
+        var scroll = $(window).scrollTop();
+        if (scroll >= 150) {
+          $('#stick-header').addClass('show');
+        } else {
+          $('#stick-header').removeClass('show');
+        }
+      });
+    } else {
+      $('header#stick-header').addClass('show');
+    }
 
     /* ACCORDION ------------------------------------------------------------------------------*/
     $('p.accordion').click(function () {
@@ -26,7 +44,7 @@
         $p.addClass('active');
         $container.addClass('active');
       }
-      $('.item.active').not($p).removeClass('active');      
+      $('.item.active').not($p).removeClass('active');
     });
 
     /* CARROSSEL */
@@ -50,8 +68,8 @@
       ],
     });
 
-    $('.footer-1 .patrocinadores').slick({     
-      slidesToShow: 6, 
+    $('.footer-1 .patrocinadores').slick({
+      slidesToShow: 6,
       dots: false,
       infinite: false,
       arrows: false,
@@ -73,12 +91,12 @@
       ],
     });
 
-    $('.footer-2 .patrocinadores').slick({     
-      slidesToShow: 5, 
+    $('.footer-2 .patrocinadores').slick({
+      slidesToShow: 5,
       slidesToScroll: 1,
       dots: false,
-      infinite: false,
-      arrows: false,
+      infinite: true,
+      arrows: true,
       autoplay: true,
       responsive: [
         {
@@ -98,14 +116,14 @@
       ],
     });
 
-    $('.depoimentos').slick({
+    /*$('.depoimentos').slick({
       slidesToShow: 3,
       slidesToScroll: 1,
       autoplay: true,
       dots: false,
       infinite: true,
-      arrows: true
-    });
+      arrows: true,
+    });*/
 
     /* fancybox */
     /*$('[data-fancybox="gallery"]').fancybox({
@@ -120,7 +138,9 @@
     }, false );*/
 
     if (mobile) {
-      $('.menu-menu-secundario-container').appendTo('.menu-menu-principal-container').show();
+      $('.menu-menu-secundario-container')
+        .appendTo('.menu-menu-principal-container')
+        .show();
 
       /* botão do menu */
       $('.menuBtn').click(function () {
@@ -131,7 +151,7 @@
           $('.mainMenu').removeClass('act');
         }
       });
-    }else{
+    } else {
       /* botão do menu */
       $('.menuBtn').click(function () {
         $(this).toggleClass('act');
@@ -140,26 +160,24 @@
         } else {
           $('.menu-menu-secundario-container').removeClass('act');
         }
-      });      
+      });
     }
 
-    $('.menu-mobile li#menu-item-295 a').click(function(){      
+    $('.menu-mobile li#menu-item-295 a').click(function () {
       $('.menuBtn').removeClass('act');
       $('.mainMenu').removeClass('act');
     });
 
     /*--- STICKY - FIXED SIDEBAR -------------------------------------------*/
-    function fixedSidebar(){
-
+    function fixedSidebar() {
       var sectionOffset = $('#main-wrapper').offset().top;
-      
+
       var rightHeight = $('#main-wrapper').outerHeight();
       var leftHeight = $('#sidebar').outerHeight() + 50;
       var margin = rightHeight - leftHeight - 50;
       var removeFixedOffset = sectionOffset + rightHeight - leftHeight;
 
-      $(window).on('scroll', function() {       
-
+      $(window).on('scroll', function () {
         if ($(this).scrollTop() > sectionOffset) {
           $('#sidebar').addClass('fixed');
         } else {
@@ -167,14 +185,13 @@
         }
         if ($(this).scrollTop() > removeFixedOffset) {
           $('#sidebar').removeClass('fixed');
-          $('#sidebar').css('margin-top',margin+'px');
-        } else{
-          $('#sidebar').css('margin-top','0px');
+          $('#sidebar').css('margin-top', margin + 'px');
+        } else {
+          $('#sidebar').css('margin-top', '0px');
         }
-      });  
-    } 
+      });
+    }
 
     setTimeout(fixedSidebar, 500);
-
   });
 })(jQuery);

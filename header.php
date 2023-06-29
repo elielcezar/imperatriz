@@ -6,14 +6,14 @@
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2V5TNFCFR8"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
+  window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
 
-    gtag('config', 'G-2V5TNFCFR8');
+  gtag('config', 'G-2V5TNFCFR8');
   </script>
 
   <meta charset="<?php bloginfo('charset'); ?>">
@@ -47,9 +47,6 @@
 
   <div class="menu-mobile">
     <nav class="mainMenu">
-      <a class="menuBtn mobile">
-        <span class="lines"></span>
-      </a>
       <?php wp_nav_menu(array('theme_location' => 'main-menu')); ?>
     </nav>
   </div>

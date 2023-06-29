@@ -48,6 +48,11 @@ body {
   font-size: 16px;
   font-weight: 500;
 }
+@media (orientation: portrait) {
+  body {
+    padding-top: 88px;
+  }
+}
 
 * {
   box-sizing: border-box;
@@ -444,7 +449,6 @@ img {
   transition: all 400ms 510ms;
   opacity: 0;
   text-align: left;
-  border-bottom: 1px solid #ccc;
 }
 .menu-mobile .mainMenu li:nth-child(odd) {
   transform: translateX(30%);
@@ -461,8 +465,8 @@ img {
 .menuBtn {
   height: 30px;
   width: 30px;
-  position: absolute;
-  top: 43px;
+  position: fixed;
+  top: 26px;
   right: 25px;
   cursor: pointer;
   z-index: 1;
@@ -496,6 +500,9 @@ img {
   bottom: -7px;
 }
 
+.menuBtn.header {
+  z-index: 50;
+}
 @media (orientation: landscape) {
   .menuBtn.header {
     display: none;
@@ -514,26 +521,35 @@ img {
   transform: rotate(-45deg);
 }
 
+/*
 .menuBtn.mobile {
   z-index: 101;
   position: absolute;
   top: 43px;
   right: 25px;
   transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-.menuBtn.mobile.act > span {
-  height: 0;
-}
-.menuBtn.mobile.act > span:after, .menuBtn.mobile.act > span:before {
-  top: 1px;
-}
-.menuBtn.mobile.act > span:after {
-  transform: rotate(45deg);
-}
-.menuBtn.mobile.act > span:before {
-  transform: rotate(-45deg);
-}
 
+  &.act {
+
+    >span {
+      height: 0;
+
+      &:after,
+      &:before {
+        top: 1px;
+      }
+
+      &:after {
+        transform: rotate(45deg);
+      }
+
+      &:before {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
+*/
 /* main menu block */
 .menu-mobile {
   overflow: hidden;
@@ -542,7 +558,7 @@ img {
 .menu-mobile .mainMenu {
   position: absolute;
   left: 0;
-  top: 0;
+  top: 89px;
   z-index: 10;
   height: 100%;
   width: 100%;
@@ -565,13 +581,27 @@ img {
   margin: 0 0 10px 0;
   padding: 0 0 5px 5px;
 }
+.menu-mobile .mainMenu ul.menu li a {
+  font-weight: 800;
+  font-family: "Playfair Display", serif;
+  text-transform: none;
+  font-size: 21px !important;
+  letter-spacing: 1px;
+}
 @media (orientation: portrait) {
   .menu-mobile .mainMenu ul.menu li#menu-item-183 {
     padding: 0 !important;
   }
 }
-.menu-mobile .mainMenu ul.menu .sub-menu #menu-item-194 {
-  border-top: 1px solid #fff;
+.menu-mobile .mainMenu ul.menu .sub-menu {
+  padding-left: 10px;
+}
+.menu-mobile .mainMenu ul.menu .sub-menu li a {
+  font-weight: 300 !important;
+  text-transform: none;
+  padding: 7px 0 5px 0 !important;
+  font-family: "Grtsk" !important;
+  font-size: 16px !important;
 }
 .menu-mobile .mainMenu ul.menu .sub-menu #menu-item-198 {
   border-bottom: none;
@@ -605,7 +635,7 @@ img {
   transform: translateX(0);
 }
 .menu-mobile .mainMenu.act ul.menu li a {
-  padding: 15px 0 12px 0;
+  padding: 12px 0 10px 0;
   font-size: 18px;
 }
 .menu-mobile .mainMenu ul#menu-menu-1 {
@@ -623,7 +653,6 @@ img {
   transition: all 400ms 510ms;
   opacity: 0;
   text-align: left;
-  border-bottom: 1px solid #ccc;
 }
 .menu-mobile .mainMenu li:nth-child(odd) {
   transform: translateX(30%);
@@ -648,6 +677,7 @@ header {
     background: #090909 url(img/bg-topo2.jpg) 20px center no-repeat;
     padding: 0;
     padding: 0 0 30px 0;
+    display: none;
   }
 }
 header .container {
@@ -850,6 +880,61 @@ header .container .content ul.social li a:hover {
   color: #e43b1b;
 }
 
+/*--- HEADER FIXO ---------------------------------------------------------------------------*/
+header#stick-header {
+  position: fixed;
+  top: -250px;
+  left: 0;
+  width: 100%;
+  transition: all 0.3s;
+  padding-bottom: 7px;
+  padding: 10px 0;
+  background: #111;
+}
+header#stick-header.show {
+  top: 0;
+  z-index: 10;
+  display: block !important;
+}
+@media (orientation: portrait) {
+  header#stick-header {
+    display: block !important;
+  }
+}
+@media (orientation: portrait) {
+  header#stick-header .container {
+    padding: 0% 7%;
+  }
+}
+header#stick-header .container .content h1 {
+  margin: 10px 0 0 0;
+}
+header#stick-header .container .content h1 a {
+  width: 280px;
+  height: 75px;
+}
+@media (orientation: portrait) {
+  header#stick-header .container .content h1 a {
+    width: 200px;
+    height: 60px;
+  }
+}
+header#stick-header .container .content .search-form {
+  top: 20px;
+  right: 120px;
+}
+@media (orientation: portrait) {
+  header#stick-header .container .content .search-form {
+    display: none;
+  }
+}
+header#stick-header .container .content ul.social {
+  top: 20px;
+}
+header#stick-header .container .content .menu-principal-container {
+  margin-top: 0;
+}
+
 /*--- HOME ---------------------------------------------------------------------------------------------*/
 @media (orientation: portrait) {
   .home .banners.desktop {
@@ -874,6 +959,11 @@ header .container .content ul.social li a:hover {
   align-items: center;
   justify-content: center;
   position: inherit;
+  display: flex;
+  text-align: center;
+}
+.home ul.slick-dots li {
+  display: inline-block;
 }
 .home ul.slick-dots li button {
   text-indent: -5000em;
@@ -1017,6 +1107,7 @@ header .container .content ul.social li a:hover {
 .home #sidebarWrap #sidebar.fixed {
   position: fixed;
   top: 10px;
+  z-index: 10;
 }
 .home .card {
   display: flex;
@@ -1105,6 +1196,7 @@ header .container .content ul.social li a:hover {
 .home section#drinks .lista-drinks {
   display: flex;
   margin-bottom: 40px;
+  justify-content: space-around;
 }
 .home section#drinks .lista-drinks .item {
   width: 33.33%;
@@ -1139,10 +1231,23 @@ header .container .content ul.social li a:hover {
   text-align: left;
   margin-bottom: 40px;
 }
+@media (orientation: portrait) {
+  .home section#mais #editorial h2 {
+    font-size: 2.25rem;
+  }
+}
 .home section#mais #casa {
   background: transparent;
   padding: 0;
   color: #fff;
+}
+.home section#mais #casa .card {
+  flex-direction: row-reverse;
+}
+@media (orientation: portrait) {
+  .home section#mais #casa .card {
+    flex-direction: column;
+  }
 }
 .home section#destinos {
   text-align: center;
@@ -1358,6 +1463,9 @@ header .container .content ul.social li a:hover {
 }
 
 /*--- FORNECEDOR INDIVIDUAL ----------------------------------------------------------------------------------*/
+.single-fornecedor #masthead img.desktop {
+  width: 100%;
+}
 @media (orientation: portrait) {
   .single-fornecedor #masthead img.desktop {
     display: none;
@@ -1418,6 +1526,15 @@ header .container .content ul.social li a:hover {
   font-size: 16px;
   line-height: 26px;
   margin: 0 0 2rem 0;
+}
+.single-fornecedor #principal .container .conteudo ul {
+  list-style-type: disc;
+  text-align: left;
+  max-width: 50%;
+  margin-left: 25px;
+}
+.single-fornecedor #principal .container .conteudo ul li {
+  margin-bottom: 10px;
 }
 .single-fornecedor #principal .container .video {
   width: 100%;
@@ -1492,60 +1609,6 @@ header .container .content ul.social li a:hover {
 }
 
 /*--- TODOS OS CONTEUDOS -----------------------------------------------------------------------*/
-.category,
-.page-template-page-conteudos,
-.page-template-page-receitas {
-  /* #masthead{
-     background-position: top center;
-     background-repeat: no-repeat;
-     background-size: cover;
-     text-align: center;
-     min-height: 500px;
-     position: relative;
-     margin-bottom: 50px;
-
-     @media(orientation:portrait){   
-       margin: 0;
-     }
-
-     .background-wrapper{
-       position: absolute;
-       top: 0;
-       left: 0;
-       width: 100%;
-       min-height: 500px;
-       background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
-     }
-
-     .container{
-       min-height: 500px;
-       display: flex;      
-       align-items: center;
-       justify-content: center;      
-       justify-content: flex-end;
-       flex-direction: column;
-       padding-bottom: 50px;
-     }
-
-     h1{
-       color: #fff;      
-       font-size: 2.5rem;
-       font-family: 'Playfair Display', serif;
-     }
-     p.chamada{
-       color: #fff;
-       font-size: 1.5rem;
-       font-weight: 700;
-       margin: 0;
-       max-width: 900px;
-       line-height: 2rem;
-
-       @media(orientation:portrait){   
-         font-size: 1rem;
-       }
-     }
-   }*/
-}
 .category #masthead,
 .page-template-page-conteudos #masthead,
 .page-template-page-receitas #masthead {
@@ -1715,6 +1778,51 @@ header .container .content ul.social li a:hover {
   }
 }
 
+/*--- HEADER / TOPO / POR CATEGORIA ----------------------------------------------------------*/
+body.page-template-page-conteudos #masthead {
+  background-image: url(img/bg-blog.jpg);
+}
+
+body.page-template-page-receitas #masthead {
+  background-image: url(img/bg-receitas.jpg);
+}
+
+body.page-id-574 #masthead {
+  background-image: url(img/bg-politica-de-privacidade.jpg);
+}
+
+body.page-id-571 #masthead {
+  background-image: url(img/bg-politica-de-cookies.jpg);
+}
+
+body.category-4 #masthead {
+  background-image: url(img/bg-adega.jpg);
+}
+
+body.category-6 #masthead {
+  background-image: url(img/bg-drinks.jpg);
+}
+
+body.category-7 #masthead {
+  background-image: url(img/bg-destinos.jpg);
+}
+
+body.category-5 #masthead {
+  background-image: url(img/bg-a-casa-e-sua.jpg);
+}
+
+body.category-8 #masthead {
+  background-image: url(img/bg-cozinha-afetiva.jpg);
+}
+
+body.category-35 #masthead {
+  background-image: url(img/bg-publieditorial.jpg);
+}
+
+body.category-73 #masthead {
+  background-image: url(img/bg-daestacao.jpg);
+}
+
 /*--- POST INDIVIDUAL -----------------------------------------------------------------------*/
 .single-post #masthead {
   background-position: top center;
@@ -1846,6 +1954,13 @@ header .container .content ul.social li a:hover {
 }
 .single-post #principal .conteudo ul li {
   margin-bottom: 10px;
+}
+@media (orientation: landscape) {
+  .single-post #principal .conteudo img.alignleft {
+    float: left;
+    margin: 0 20px 5px 0;
+    display: block;
+  }
 }
 .single-post #principal .conteudo .wp-block-column {
   text-align: center;
@@ -2227,6 +2342,11 @@ footer .footer-1 ul li.slick-slide img {
 footer .footer-2 {
   background: #e43b1b;
 }
+@media (orientation: portrait) {
+  footer .footer-2 .container {
+    padding: 0;
+  }
+}
 footer .footer-2 ul {
   display: flex;
   justify-content: space-around;
@@ -2237,21 +2357,52 @@ footer .footer-2 ul .slick-list {
   width: 100%;
 }
 footer .footer-2 ul li.slick-slide {
-  padding: 2.5%;
-  text-align: center;
+  min-height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 @media (orientation: portrait) {
   footer .footer-2 ul li.slick-slide {
-    padding: 1%;
+    padding: 0;
     min-height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 }
-footer .footer-2 ul li.slick-slide img {
-  max-height: 80px;
+footer .footer-2 ul li.slick-slide a {
   display: inline-block;
+}
+footer .footer-2 ul li.slick-slide a img {
+  max-height: 120px;
+  max-width: 120px;
+  display: inline-block;
+}
+footer .footer-2 ul .slick-arrow {
+  width: 25px;
+  height: 25px;
+  text-indent: -5000em;
+  padding: 0;
+  position: absolute;
+  top: 40%;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: 18px;
+  z-index: 10;
+}
+footer .footer-2 ul .slick-arrow.slick-prev {
+  background-image: url(img/arrow-l-carrossel.png?v2);
+  background-size: auto 100%;
+  left: -30px;
+}
+footer .footer-2 ul .slick-arrow.slick-next {
+  background-image: url(img/arrow-r-carrossel.png?v2);
+  background-size: auto 100%;
+  right: -30px;
+}
+footer .footer-2 ul .slick-arrow button {
+  display: none;
 }
 footer .footer-3 {
   background: #222;
@@ -2308,6 +2459,9 @@ footer .footer-3 .container a {
   font-family: "Playfair Display", serif;
   letter-spacing: 1px;
   font-weight: 700;
+}
+footer .footer-3 .container a:hover {
+  color: #e43b1b;
 }
 footer .footer-3 .container ul li {
   margin-bottom: 10px;
