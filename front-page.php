@@ -93,10 +93,35 @@ Template Name: Homepage Custom
 
           <div class="revista">
             <h3>Revista Imperatriz Estações</h3>
-            <p>Confira o conteúdo completo da primeira edição</p>
-            <a href="http://estacoesimperatriz.com.br/revista/">
-              <img src="http://estacoesimperatriz.com.br/wp-content/uploads/2023/04/capa.jpg" alt="">
-            </a>
+            <p>EDIÇÃO DE INVERNO</p>
+            <?php
+                $loop = new WP_Query(array(
+                  'post_type' => 'revistas',
+                  'posts_per_page' => 1,        
+                  'order' => 'DESC'       
+
+                ));
+                if ($loop->have_posts()) :
+                  while ($loop->have_posts()) : $loop->the_post(); ?>
+
+                <?php
+                    $image = get_field('capa');
+                    $size = 'revistas'; // (thumbnail, medium, large, full or custom size)            
+                  ?>
+                
+               
+                  <a href="<?php the_field('url'); ?>">
+                    <?php 
+                    if( $image ) {
+                      echo wp_get_attachment_image( $image, $size );
+                    }
+                    ?>
+                  </a>
+                  
+                <?php endwhile;
+                endif;
+                wp_reset_postdata();
+                ?>
           </div>
 
         </div>
