@@ -1401,6 +1401,68 @@ header#stick-header .container .content .menu-principal-container {
   text-decoration: underline;
 }
 
+/*--- REVISTAS  ----------------------------------------------------------------------------------*/
+.page-template-page-revistas #masthead {
+  padding: 80px 0 25px 0;
+}
+@media (orientation: portrait) {
+  .page-template-page-revistas #masthead {
+    padding: 50px 0 0 0;
+  }
+}
+.page-template-page-revistas #masthead h1 {
+  color: #e43b1b;
+  text-align: center;
+  width: 100%;
+  font-size: 3rem;
+}
+.page-template-page-revistas #principal {
+  padding-bottom: 100px;
+}
+.page-template-page-revistas #principal ul {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+@media (orientation: portrait) {
+  .page-template-page-revistas #principal ul {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+}
+.page-template-page-revistas #principal ul li {
+  padding: 50px;
+  text-align: center;
+}
+@media (orientation: portrait) {
+  .page-template-page-revistas #principal ul li {
+    padding: 0 7%;
+  }
+}
+.page-template-page-revistas #principal ul li img {
+  max-width: 250px;
+}
+.page-template-page-revistas #principal ul li p.btn {
+  color: #fff;
+  background: #e43b1b;
+  padding: 4px 40px;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 18px;
+  border-radius: 25px;
+  transition: all 0.3s;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+  font-family: "Playfair Display", serif;
+}
+.page-template-page-revistas #principal ul li p.btn:hover {
+  background: #333;
+}
+
 /*--- FORNECEDORES  ----------------------------------------------------------------------------------*/
 .page-template-page-fornecedores #masthead {
   padding: 70px 0 50px 0;
@@ -1456,6 +1518,7 @@ header#stick-header .container .content .menu-principal-container {
 }
 .page-template-page-fornecedores #principal .fornecedores li img {
   max-height: 90px;
+  max-width: 230px;
 }
 .page-template-page-fornecedores .footer-1,
 .page-template-page-fornecedores .footer-2 {
@@ -1488,7 +1551,7 @@ header#stick-header .container .content .menu-principal-container {
   width: 100%;
 }
 .single-fornecedor #principal .container .conteudo img.logo {
-  max-width: 400px;
+  max-width: 300px;
 }
 @media (orientation: portrait) {
   .single-fornecedor #principal .container .conteudo img.logo {
@@ -1514,7 +1577,7 @@ header#stick-header .container .content .menu-principal-container {
 }
 .single-fornecedor #principal .container .conteudo .img-destaque {
   float: right;
-  max-width: 40%;
+  max-width: 400px;
   margin: 0 0 25px 5%;
 }
 @media (orientation: portrait) {

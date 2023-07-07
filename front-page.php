@@ -205,7 +205,8 @@ Template Name: Homepage Custom
         $loop = new WP_Query(array(
           'post_type' => 'post',
           'posts_per_page' => 1,
-          'category_name' => 'destinos'
+          'category_name' => 'destinos',
+          'order' => 'DESC'
         ));
 
         if ($loop->have_posts()) :
@@ -251,13 +252,15 @@ Template Name: Homepage Custom
         <?php
         $loop = new WP_Query(array(
           'post_type' => 'post',
-          'posts_per_page' => 1,          
-          'meta_query' => array(
+          'posts_per_page' => 1,     
+          'category_name' => 'publieditorial',
+          'order' => 'DESC'     
+          /*'meta_query' => array(
             array(
                 'key'   => 'publieditorial',
                 'value' => '1',
             )
-        )
+        )*/
         ));
         if ($loop->have_posts()) :
           while ($loop->have_posts()) : $loop->the_post(); ?>
@@ -288,7 +291,8 @@ Template Name: Homepage Custom
           $loop = new WP_Query(array(
             'post_type' => 'post',
             'posts_per_page' => 1,
-            'category_name' => 'a-casa-e-sua'
+            'category_name' => 'a-casa-e-sua',
+            'order' => 'DESC'
           ));
           if ($loop->have_posts()) :
             while ($loop->have_posts()) : $loop->the_post(); ?>
@@ -329,7 +333,8 @@ Template Name: Homepage Custom
         $loop = new WP_Query(array(
           'post_type' => 'post',
           'posts_per_page' => 1,
-          'category_name' => 'cozinha-afetiva'
+          'category_name' => 'cozinha-afetiva',
+          'order' => 'DESC'
         ));
         if ($loop->have_posts()) :
           while ($loop->have_posts()) : $loop->the_post(); ?>
